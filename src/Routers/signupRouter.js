@@ -1,11 +1,11 @@
 import express from "express";
 import User from "../Schemas/userSchema.js";
-import fs from "fs";
 
-const userRouter = express.Router();
+
+const signupRouter = express.Router();
 
 // register
-userRouter.post("/", async (req, res, next) => {
+signupRouter.post("/", async (req, res, next) => {
   try {
     const user = await new User(req.body).save();
     res.send(user)
@@ -17,4 +17,4 @@ userRouter.post("/", async (req, res, next) => {
 })
 
 
-export default userRouter
+export default signupRouter
