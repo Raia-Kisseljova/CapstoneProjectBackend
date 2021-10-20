@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 
 import mongoose from "mongoose";
-import { notFound, forbidden, catchAllErrorHandler } from "./ErrorHandlers/index.js";
+import { notFound, forbidden, catchAllErrorHandler } from "./errorHandlers.js"
 
 import signupRouter from "./Routers/signupRouter.js";
 import userRouter from "./Routers/userRouter.js";
