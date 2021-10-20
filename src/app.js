@@ -2,8 +2,10 @@ import express from "express";
 import cors from "cors";
 
 import mongoose from "mongoose";
+import { notFound, forbidden, catchAllErrorHandler } from "./ErrorHandlers/index.js";
 
 import signupRouter from "./Routers/signupRouter.js";
+import userRouter from "./Routers/userRouter.js";
 
 const app = express();
 
@@ -28,6 +30,13 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/signup", signupRouter);
+app.use("/user", userRouter)
+
+
+app.use(notFound);
+app.use(forbidden);
+app.use(catchAllErrorHandler);
+
 
 app.listen(PORT, async () => {
   try {
