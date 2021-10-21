@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
-
+import mongoose, { Schema } from "mongoose";
+import animalSchema from "./animalSchema";
 const userSchema = new mongoose.Schema(
   {
     name: { type: String, required: true },
@@ -12,12 +12,13 @@ const userSchema = new mongoose.Schema(
       default: "https://ui-avatars.com/api/?name=Unnamed+User",
     },
     organisation: {
-      type: String, required: true
-    }
+      name: { type: String },
+      location: { type: String },
+      website: { type: String },
+    },
+    animals: { type: Schema.Types.ObjectId, ref: "Animal" },
   },
   { timestamps: true }
 );
-
-
 
 export default mongoose.model("User", userSchema);

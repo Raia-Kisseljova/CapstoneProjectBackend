@@ -17,4 +17,3 @@ signupRouter.post("/", async (req, res, next) => {
 });
 
 export default signupRouter;
-// oop in javascript.
