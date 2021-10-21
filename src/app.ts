@@ -6,6 +6,7 @@ import { notFound, forbidden, catchAllErrorHandler } from "./errorHandlers";
 
 import signupRouter from "./Routers/signupRouter";
 import userRouter from "./Routers/userRouter";
+import animalRouter from "./Routers/animalRouter";
 
 import dotenv from "dotenv";
 dotenv.config();
@@ -33,6 +34,7 @@ app.use(express.json());
 
 app.use("/signup", signupRouter);
 app.use("/user", userRouter);
+app.use("/animal", animalRouter);
 
 app.use(notFound);
 app.use(forbidden);
