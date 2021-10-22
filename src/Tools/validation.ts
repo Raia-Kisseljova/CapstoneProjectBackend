@@ -36,7 +36,7 @@ const animalSchemaCheck: Schema = {
   location: {
     in: ["body"],
     isString: {
-      errorMessage: "location : type must be numeric ",
+      errorMessage: "location : type must be string ",
     },
   },
   dateOfBirth: {
