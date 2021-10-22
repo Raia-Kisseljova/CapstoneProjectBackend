@@ -6,7 +6,10 @@ const signupRouter = express.Router();
 // register
 signupRouter.post("/", async (req, res, next) => {
   try {
-    const user = await new User(req.body).save();
+    const user = await new User({
+      ...req.body,
+      createdAt: new Date(),
+    }).save();
     res.send(user);
   } catch (error) {
     if (error instanceof Error) {

@@ -16,7 +16,7 @@ const animalSchema = new mongoose.Schema(
     description: { type: String, required: true },
     image: {
       type: String,
-      default: "https://ui-avatars.com/api/?name=Unnamed+User",
+      default: "https://ui-avatars.com/",
     },
     canLiveWithPets: {
       type: Boolean,
