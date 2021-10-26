@@ -1,12 +1,14 @@
 import express from "express";
 import User from "../Schemas/userSchema";
-
+import Organisation from "../models/organisation";
+import basicUser from "../models/basicUser";
 const signupRouter = express.Router();
+const organisationRouter = express.Router();
 
-// register
+// register user
 signupRouter.post("/", async (req, res, next) => {
   try {
-    const user = await new User({
+    const user = await new basicUser({
       ...req.body,
       createdAt: new Date(),
     }).save();
@@ -14,9 +16,24 @@ signupRouter.post("/", async (req, res, next) => {
   } catch (error) {
     if (error instanceof Error) {
       console.log({ error });
-      res.send(500).send({ message: error.message });
+      res.status(500).send({ message: error.message });
     }
   }
 });
 
-export default signupRouter;
+organisationRouter.post("/", async (req, res, next) => {
+  try {
+    const organisation = await new Organisation({
+      ...req.body,
+      createdAt: new Date(),
+    }).save();
+    res.send(organisation);
+  } catch (error) {
+    if (error instanceof Error) {
+      console.log({ error });
+      res.status(500).send({ message: error.message });
+    }
+  }
+});
+
+export { signupRouter, organisationRouter };
