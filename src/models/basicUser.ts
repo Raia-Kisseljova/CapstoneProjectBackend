@@ -3,19 +3,14 @@ import userSchema from "../Schemas/userSchema";
 
 const basicUser = userSchema.discriminator(
   "BasicUser",
-  new mongoose.Schema(
-    {
-      nickname: { type: String, required: true },
-      email: { type: String, required: true },
-      avatar: {
-        type: String,
-        default: "https://ui-avatars.com",
-      },
-      favourites: { type: Schema.Types.ObjectId, ref: "Animal" },
-      role: { type: String, enum: ["Standard user", "standard user"] },
+  new mongoose.Schema({
+    nickname: { type: String, required: true },
+    avatar: {
+      type: String,
+      default: "https://ui-avatars.com",
     },
-    { timestamps: true }
-  )
+    favourites: { type: Schema.Types.ObjectId, ref: "Animal" },
+  })
 );
 
 // const organisation = userSchema.discriminator(

@@ -10,7 +10,7 @@ import {
   unauthorized,
 } from "./errorHandlers";
 
-import signupRouter from "./Routers/signupRouter";
+import { signupRouter, organisationRouter } from "./Routers/signupRouter";
 import userRouter from "./Routers/userRouter";
 import animalRouter from "./Routers/animalRouter";
 
@@ -24,7 +24,8 @@ app.use(cors());
 
 app.use(express.json());
 
-app.use("/signup", signupRouter);
+app.use("/signup/organisation", organisationRouter);
+app.use("/signup/user", signupRouter);
 app.use("/user", userRouter);
 app.use("/animal", animalRouter);
 
