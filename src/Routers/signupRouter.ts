@@ -2,16 +2,20 @@ import express from "express";
 import User from "../Schemas/userSchema";
 import Organisation from "../models/organisation";
 import basicUser from "../models/basicUser";
+import { sendEmailUser, sendEmailOrg } from "../Tools/emails";
+
 const signupRouter = express.Router();
 const organisationRouter = express.Router();
 
 // register user
 signupRouter.post("/", async (req, res, next) => {
   try {
+    const { name } = req.body;
     const user = await new basicUser({
       ...req.body,
       createdAt: new Date(),
     }).save();
+    await sendEmailUser(user);
     res.send(user);
   } catch (error) {
     if (error instanceof Error) {
@@ -27,6 +31,7 @@ organisationRouter.post("/", async (req, res, next) => {
       ...req.body,
       createdAt: new Date(),
     }).save();
+    await sendEmailOrg(organisation);
     res.send(organisation);
   } catch (error) {
     if (error instanceof Error) {

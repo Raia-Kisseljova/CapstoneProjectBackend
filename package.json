@@ -21,6 +21,8 @@
   },
   "homepage": "https://github.com/Raissa-Kisseljova/CapstoneProjectBackend#readme",
   "dependencies": {
+    "@sendgrid/mail": "^7.5.0",
+    "@types/fs-extra": "^9.0.13",
     "axios": "^0.23.0",
     "cloudinary": "^1.27.1",
     "cors": "^2.8.5",
