@@ -1,23 +1,18 @@
 import mongoose, { Schema } from "mongoose";
 import userSchema from "../Schemas/userSchema";
 
-const organisation = userSchema.discriminator(
+const Organisation = userSchema.discriminator(
   "Organisation",
-  new mongoose.Schema(
-    {
-      name: { type: String, required: true },
-      email: { type: String, required: true },
-      avatar: {
-        type: String,
-        default: "https://ui-avatars.com",
-      },
-      location: { type: String, required: true },
-      website: { type: String },
-      animals: { type: Schema.Types.ObjectId, ref: "Animal" },
-      role: { type: String, enum: ["Organisation", "organisation"] },
+  new mongoose.Schema({
+    name: { type: String, required: true },
+    avatar: {
+      type: String,
+      default: "https://ui-avatars.com",
     },
-    { timestamps: true }
-  )
+    location: { type: String, required: true },
+    website: { type: String },
+    animals: { type: Schema.Types.ObjectId, ref: "Animal" },
+  })
 );
 
 // const organisation = userSchema.discriminator(
