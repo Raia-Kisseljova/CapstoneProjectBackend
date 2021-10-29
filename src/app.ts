@@ -10,7 +10,11 @@ import {
   unauthorized,
 } from "./errorHandlers";
 
-import { signupRouter, organisationRouter } from "./routers/signupRouter";
+import {
+  signupRouter,
+  organisationRouter,
+  loginRouter,
+} from "./routers/signupRouter";
 import userRouter from "./routers/userRouter";
 import animalRouter from "./routers/animalRouter";
 
@@ -26,6 +30,7 @@ app.use(express.json());
 
 app.use("/signup/organisation", organisationRouter);
 app.use("/signup/user", signupRouter);
+app.use("/login", loginRouter);
 app.use("/user", userRouter);
 app.use("/animal", animalRouter);
 

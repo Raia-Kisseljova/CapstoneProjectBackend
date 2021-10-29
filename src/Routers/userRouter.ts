@@ -1,5 +1,6 @@
 import express from "express";
 import User from "../schemas/userSchema";
+import auth from "../middleware/auth";
 
 const userRouter = express.Router();
 
@@ -18,7 +19,8 @@ userRouter.get("/:nickname", async (req, res, next) => {
   }
 });
 
-userRouter.put("/:_id/settings", async (req, res, next) => {
+userRouter.put("/:_id/settings", auth, async (req, res, next) => {
+  console.log("CURRENT USER", (req as any).user);
   try {
     const updatedUser = await User.findByIdAndUpdate(req.params._id, req.body, {
       new: true,
@@ -34,7 +36,7 @@ userRouter.put("/:_id/settings", async (req, res, next) => {
   }
 });
 
-userRouter.delete("/:_id", async (req, res, next) => {
+userRouter.delete("/:_id", auth, async (req, res, next) => {
   try {
     const user = User.findById(req.params._id);
     if (!user) {
