@@ -1,5 +1,6 @@
 import mongoose, { Schema } from "mongoose";
-import userSchema from "../Schemas/userSchema";
+import userSchema from "../schemas/userSchema";
+import { IUser } from "../types";
 
 const basicUser = userSchema.discriminator(
   "BasicUser",
@@ -18,4 +19,4 @@ const basicUser = userSchema.discriminator(
 //   organisationSchema
 // );
 
-export default mongoose.model("BasicUser");
+export default mongoose.model<IUser>("BasicUser");

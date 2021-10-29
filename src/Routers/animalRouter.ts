@@ -1,6 +1,6 @@
 import express from "express";
-import Animal from "../Schemas/animalSchema";
-import { checkAnimalSchema, checkValidationResult } from "../Tools/validation";
+import Animal from "../schemas/animalSchema";
+import { checkAnimalSchema, checkValidationResult } from "../tools/validation";
 const animalRouter = express.Router();
 
 animalRouter.post(

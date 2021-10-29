@@ -1,5 +1,6 @@
 import mongoose, { Schema } from "mongoose";
-import userSchema from "../Schemas/userSchema";
+import userSchema from "../schemas/userSchema";
+import { IOrganisation } from "../types";
 
 const Organisation = userSchema.discriminator(
   "Organisation",
@@ -20,4 +21,4 @@ const Organisation = userSchema.discriminator(
 //   organisationSchema
 // );
 
-export default mongoose.model("Organisation");
+export default mongoose.model<IOrganisation>("Organisation");

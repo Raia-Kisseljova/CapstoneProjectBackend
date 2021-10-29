@@ -1,7 +1,8 @@
 import sgMail from "@sendgrid/mail";
+import { IUser, IOrganisation } from "../types";
 
-export const sendEmailUser = async (user: any) => {
-  sgMail.setApiKey(process.env.SENDGRID_API_KEY as any);
+export const sendEmailUser = async (user: IUser) => {
+  sgMail.setApiKey(process.env.SENDGRID_API_KEY as string);
   const msg = {
     to: "ev1lcapybara96@gmail.com",
     from: "ev1lcapybara96@gmail.com",
@@ -12,8 +13,8 @@ export const sendEmailUser = async (user: any) => {
   await sgMail.send(msg);
 };
 
-export const sendEmailOrg = async (organisation: any) => {
-  sgMail.setApiKey(process.env.SENDGRID_API_KEY as any);
+export const sendEmailOrg = async (organisation: IOrganisation) => {
+  sgMail.setApiKey(process.env.SENDGRID_API_KEY as string);
   const msg = {
     to: "ev1lcapybara96@gmail.com",
     from: "ev1lcapybara96@gmail.com",

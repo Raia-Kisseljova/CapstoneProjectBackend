@@ -26,7 +26,7 @@ const folderForAnimalImg = join(
 );
 const uploadRouter = express.Router();
 
-export const saveAnimalPicture = (filename: any, contentBuffer: Buffer) =>
+export const saveAnimalPicture = (filename: string, contentBuffer: Buffer) =>
   fse.writeFile(join(folderForAnimalImg, filename), contentBuffer);
 
 uploadRouter.post("/", multer().single("animalPic"), async (req, res, next) => {

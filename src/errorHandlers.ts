@@ -34,12 +34,10 @@ export const unauthorized: ErrorRequestHandler = (err, req, res, next) => {
 
 export const serverError: ErrorRequestHandler = (err, req, res, next) => {
   if (err) {
-    if (!(req as any).headersSent) {
-      res
-        .status(err.status || 500)
-        .send({
-          message: err.message || "Internal server error, lets investigate",
-        });
+    if (!res.headersSent) {
+      res.status(err.status || 500).send({
+        message: err.message || "Internal server error, lets investigate",
+      });
     }
   }
   next();

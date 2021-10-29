@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 
-import mongoose from "mongoose";
+import mongoose, { ConnectOptions } from "mongoose";
 import {
   notFound404,
   forbidden,
@@ -10,9 +10,9 @@ import {
   unauthorized,
 } from "./errorHandlers";
 
-import { signupRouter, organisationRouter } from "./Routers/signupRouter";
-import userRouter from "./Routers/userRouter";
-import animalRouter from "./Routers/animalRouter";
+import { signupRouter, organisationRouter } from "./routers/signupRouter";
+import userRouter from "./routers/userRouter";
+import animalRouter from "./routers/animalRouter";
 
 import dotenv from "dotenv";
 dotenv.config();
@@ -38,11 +38,11 @@ app.use(serverError);
 app.listen(PORT, async () => {
   try {
     await mongoose.connect(
-      MONGO_CONNECTION as any,
+      MONGO_CONNECTION as string,
       {
         useNewUrlParser: true,
         useUnifiedTopology: true,
-      } as any
+      } as ConnectOptions
     );
     console.log(
       `✅ App is running on ${PORT} and was succesfully connected to DB`

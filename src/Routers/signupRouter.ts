@@ -1,8 +1,8 @@
 import express from "express";
-import User from "../Schemas/userSchema";
+import User from "../schemas/userSchema";
 import Organisation from "../models/organisation";
 import basicUser from "../models/basicUser";
-import { sendEmailUser, sendEmailOrg } from "../Tools/emails";
+import { sendEmailUser, sendEmailOrg } from "../tools/emails";
 
 const signupRouter = express.Router();
 const organisationRouter = express.Router();

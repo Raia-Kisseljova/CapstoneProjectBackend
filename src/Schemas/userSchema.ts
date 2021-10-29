@@ -1,11 +1,12 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { Schema, Document } from "mongoose";
+import { IBaseUser } from "../types";
 
-interface userOptionsType {
-  discriminatorKey: String;
-  collection: String;
+interface UserOptionsType {
+  discriminatorKey: string;
+  collection: string;
 }
 
-const userOptions: userOptionsType = {
+const userOptions: UserOptionsType = {
   discriminatorKey: "role",
   collection: "users",
 };
@@ -16,7 +17,7 @@ const userSchema = new mongoose.Schema(
     password: { type: String, required: true },
     createdAt: { type: Date },
   },
-  userOptions as any
+  userOptions
 );
 
-export default mongoose.model("User", userSchema);
+export default mongoose.model<IBaseUser>("User", userSchema);
