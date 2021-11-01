@@ -1,24 +1,22 @@
-import express from "express";
 import cors from "cors";
-
+import dotenv from "dotenv";
+import express from "express";
 import mongoose, { ConnectOptions } from "mongoose";
 import {
-  notFound404,
-  forbidden,
-  serverError,
   badRequest,
+  forbidden,
+  notFound404,
+  serverError,
   unauthorized,
 } from "./errorHandlers";
-
+import animalRouter from "./routers/animalRouter";
 import {
-  signupRouter,
-  organisationRouter,
   loginRouter,
+  organisationRouter,
+  signupRouter,
 } from "./routers/signupRouter";
 import userRouter from "./routers/userRouter";
-import animalRouter from "./routers/animalRouter";
 
-import dotenv from "dotenv";
 dotenv.config();
 
 const app = express();

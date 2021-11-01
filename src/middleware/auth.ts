@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from "express";
+import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import User from "../schemas/userSchema";
 
@@ -28,7 +28,7 @@ const auth = (req: Request, res: Response, next: NextFunction) => {
         .setHeader("WWW-Authenticate", "Bearer")
         .send({ message: "Invalid token." });
     } else {
-      const user = await User.findOne({ _id: (payload as any)._id });
+      const user = await User.findOne({ _id: payload as any });
       if (user === null) {
         return res
           .status(401)

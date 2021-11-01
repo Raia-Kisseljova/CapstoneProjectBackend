@@ -6,6 +6,7 @@ const Organisation = userSchema.discriminator(
   "Organisation",
   new mongoose.Schema({
     name: { type: String, required: true },
+    nickname: { type: String, required: true },
     avatar: {
       type: String,
       default: "https://ui-avatars.com",

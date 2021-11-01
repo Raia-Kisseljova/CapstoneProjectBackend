@@ -1,5 +1,5 @@
-import mongoose, { Schema, Document } from "mongoose";
-import { IBaseUser } from "../types";
+import mongoose from "mongoose";
+import { IOrganisation, IUser } from "../types";
 
 interface UserOptionsType {
   discriminatorKey: string;
@@ -20,4 +20,4 @@ const userSchema = new mongoose.Schema(
   userOptions
 );
 
-export default mongoose.model<IBaseUser>("User", userSchema);
+export default mongoose.model<IUser | IOrganisation>("User", userSchema);

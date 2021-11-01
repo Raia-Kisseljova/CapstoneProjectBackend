@@ -1,10 +1,10 @@
-import express from "express";
 import bcrypt from "bcrypt";
+import express from "express";
 import jwt from "jsonwebtoken";
-import User from "../schemas/userSchema";
-import Organisation from "../models/organisation";
 import basicUser from "../models/basicUser";
-import { sendEmailUser, sendEmailOrg } from "../tools/emails";
+import Organisation from "../models/organisation";
+import User from "../schemas/userSchema";
+import { sendEmailOrg, sendEmailUser } from "../tools/emails";
 
 const SALT = 10;
 
@@ -26,9 +26,15 @@ loginRouter.post("/", async (req, res, next) => {
     return res.status(401).send({ message: "Invalid email and/or password. " });
   }
 
-  const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET as string, {
-    expiresIn: "1h",
-  });
+  const nickname = user.role === "Organisation" ? user.name : user.nickname;
+
+  const token = jwt.sign(
+    { _id: user._id, nickname },
+    process.env.JWT_SECRET as string,
+    {
+      expiresIn: "1h",
+    }
+  );
 
   return res.status(200).send({ accessToken: token });
 });
