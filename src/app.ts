@@ -1,6 +1,7 @@
 import cors from "cors";
 import dotenv from "dotenv";
 import express from "express";
+import listendpoints from "express-list-endpoints";
 import mongoose, { ConnectOptions } from "mongoose";
 import {
   badRequest,
@@ -10,13 +11,14 @@ import {
   unauthorized,
 } from "./errorHandlers";
 import animalRouter from "./routers/animalRouter";
+import organisationRouter from "./routers/organisationRouter";
 import {
   loginRouter,
-  organisationRouter,
+  organisationSignupRouter,
   signupRouter,
 } from "./routers/signupRouter";
 import userRouter from "./routers/userRouter";
-
+import { uploadRouter } from "./tools/upload";
 dotenv.config();
 
 const app = express();
@@ -26,17 +28,20 @@ app.use(cors());
 
 app.use(express.json());
 
-app.use("/signup/organisation", organisationRouter);
+app.use("/signup/organisation", organisationSignupRouter);
+app.use("/organisation", organisationRouter);
 app.use("/signup/user", signupRouter);
 app.use("/login", loginRouter);
 app.use("/user", userRouter);
 app.use("/animal", animalRouter);
-
+app.use("/upload", uploadRouter);
 app.use(badRequest);
 app.use(unauthorized);
 app.use(forbidden);
 app.use(notFound404);
 app.use(serverError);
+
+mongoose.set("debug", true);
 
 app.listen(PORT, async () => {
   try {
@@ -50,6 +55,7 @@ app.listen(PORT, async () => {
     console.log(
       `✅ App is running on ${PORT} and was succesfully connected to DB`
     );
+    console.table(listendpoints(app));
   } catch (error) {
     console.log("Db connection is failed ", error);
   }
