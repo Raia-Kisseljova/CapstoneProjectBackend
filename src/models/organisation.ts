@@ -13,6 +13,7 @@ const Organisation = userSchema.discriminator(
     },
     location: { type: String, required: true },
     website: { type: String },
+    about: { type: String },
     animals: { type: Schema.Types.ObjectId, ref: "Animal" },
   })
 );

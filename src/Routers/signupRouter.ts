@@ -10,7 +10,7 @@ const SALT = 10;
 
 const signupRouter = express.Router();
 const loginRouter = express.Router();
-const organisationRouter = express.Router();
+const organisationSignupRouter = express.Router();
 
 loginRouter.post("/", async (req, res, next) => {
   const { email, password } = req.body;
@@ -41,17 +41,28 @@ loginRouter.post("/", async (req, res, next) => {
 
 // register user
 signupRouter.post("/", async (req, res, next) => {
-  const { email, nickname, password } = req.body;
+  const {
+    email,
+    nickname,
+    password,
+    fullname,
+    hobby,
+    dateOfBirth,
+    about,
+    occupation,
+  } = req.body;
 
-  // check if email is available.
-  // check if nickname is available.
-  // validate password strength (at least length of 8).
   const hashedPassword = await bcrypt.hash(password, SALT);
   try {
     const user = await new basicUser({
       email,
       nickname,
       password: hashedPassword,
+      fullname,
+      hobby,
+      dateOfBirth,
+      about,
+      occupation,
       createdAt: new Date(),
     }).save();
     await sendEmailUser(user);
@@ -64,14 +75,22 @@ signupRouter.post("/", async (req, res, next) => {
   }
 });
 
-organisationRouter.post("/", async (req, res, next) => {
+organisationSignupRouter.post("/", async (req, res, next) => {
+  const { name, password, email, about, location, website } = req.body;
+  const hashedPassword = await bcrypt.hash(password, SALT);
   try {
     const organisation = await new Organisation({
-      ...req.body,
+      password: hashedPassword,
+      email,
+      name,
+      location,
+      website,
+      about,
       createdAt: new Date(),
     }).save();
     await sendEmailOrg(organisation);
-    res.send(organisation);
+
+    res.send(organisation); // do not send password please.
   } catch (error) {
     if (error instanceof Error) {
       console.log({ error });
@@ -80,4 +99,4 @@ organisationRouter.post("/", async (req, res, next) => {
   }
 });
 
-export { signupRouter, organisationRouter, loginRouter };
+export { signupRouter, organisationSignupRouter, loginRouter };
