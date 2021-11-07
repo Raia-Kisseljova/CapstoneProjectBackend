@@ -106,7 +106,4 @@ userRouter.delete("/:_id", auth, async (req, res, next) => {
   }
 });
 
-// https://www.example.com/api/users/idfdfadsfasfads?page=2&limit=10#hash
-// protocol://top-level-domain.hostname.domain/pathname?query-string
-
 export default userRouter;
