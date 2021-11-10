@@ -29,7 +29,7 @@ loginRouter.post("/", async (req, res, next) => {
   const nickname = user.role === "Organisation" ? user.name : user.nickname;
 
   const token = jwt.sign(
-    { _id: user._id, nickname },
+    { _id: user._id, nickname, role: user.role },
     process.env.JWT_SECRET as string,
     {
       expiresIn: "1h",
