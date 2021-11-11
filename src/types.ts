@@ -12,7 +12,7 @@ export interface IUser extends IBaseUser {
   role: "BasicUser";
   nickname: string;
   avatar: string;
-  favorites: Id[];
+  favourites: Id[];
 }
 
 export interface IOrganisation extends IBaseUser {
@@ -21,4 +21,17 @@ export interface IOrganisation extends IBaseUser {
   location: string;
   website: string;
   animals: Id[];
+}
+
+export interface IAnimal extends Document {
+  petName: string;
+  breed: string;
+  type: string;
+  gender: string;
+  image: string;
+  location: string;
+  description: string;
+  canLiveWithPets: boolean;
+  canLiveWithChildren: boolean;
+  indoorOnly: boolean;
 }
