@@ -50,6 +50,7 @@ signupRouter.post("/", async (req, res, next) => {
     dateOfBirth,
     about,
     occupation,
+    favourites,
   } = req.body;
 
   const hashedPassword = await bcrypt.hash(password, SALT);
@@ -63,6 +64,7 @@ signupRouter.post("/", async (req, res, next) => {
       dateOfBirth,
       about,
       occupation,
+      favourites,
       createdAt: new Date(),
     }).save();
     await sendEmailUser(user);

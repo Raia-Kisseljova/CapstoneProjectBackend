@@ -1,6 +1,6 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { Model, Schema } from "mongoose";
 import userSchema from "./userSchema";
-
+import { IAnimal } from "../types";
 const animalSchema = new mongoose.Schema(
   {
     petName: { type: String, required: true },
@@ -36,4 +36,5 @@ const animalSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export default mongoose.model("Animal", animalSchema);
+const Animal: Model<IAnimal> = mongoose.model("Animal", animalSchema);
+export default Animal;

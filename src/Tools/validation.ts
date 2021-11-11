@@ -39,6 +39,12 @@ const animalSchemaCheck: Schema = {
       errorMessage: "location : type must be string ",
     },
   },
+  image: {
+    in: ["body"],
+    isObject: {
+      errorMessage: "check",
+    },
+  },
   dateOfBirth: {
     in: ["body"],
     isString: {
