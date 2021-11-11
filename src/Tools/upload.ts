@@ -50,7 +50,7 @@ uploadRouter.post(
     for (let i = 0; i < files.length; i++) {
       const file = files[i];
       const BYTES_IN_KB = 1024;
-      const MAX_FILE_SIZE = BYTES_IN_KB * 20;
+      const MAX_FILE_SIZE = BYTES_IN_KB * 200;
 
       if (file.size > MAX_FILE_SIZE) {
         return res
@@ -78,7 +78,6 @@ uploadRouter.post(
       }
     }
 
-    console.log("here");
     res.status(200).send("Files uploaded");
   }
 );
