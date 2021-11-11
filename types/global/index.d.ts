@@ -1,9 +1,9 @@
-import { IBaseUser } from "../../src/types";
+import { IBaseUser, IOrganisation } from "../../src/types";
 
 declare global {
   namespace Express {
     interface Request {
-      user?: IBaseUser;
+      user?: IUser | IOrganisation;
     }
   }
 }
