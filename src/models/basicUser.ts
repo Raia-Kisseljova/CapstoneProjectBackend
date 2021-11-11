@@ -15,7 +15,7 @@ const basicUser = userSchema.discriminator(
     dateOfBirth: { type: Date },
     about: { type: String },
     occupation: { type: String },
-    favourites: { type: Schema.Types.ObjectId, ref: "Animal" },
+    favourites: [{ type: Schema.Types.ObjectId, ref: "Animal" }],
   })
 );
 
