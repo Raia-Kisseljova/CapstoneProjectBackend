@@ -1,10 +1,13 @@
 import express from "express";
+import auth from "../middleware/auth";
 import Animal from "../schemas/animalSchema";
 import { checkAnimalSchema, checkValidationResult } from "../tools/validation";
+import { isOrganisation } from "../tools/isOrganisation";
 const animalRouter = express.Router();
 
 animalRouter.post(
   "/",
+  auth,
   checkAnimalSchema,
 
   async (
@@ -12,10 +15,17 @@ animalRouter.post(
     res: express.Response,
     next: express.NextFunction
   ) => {
+    const check = isOrganisation(req.user);
+    if (check === false) {
+      return res.status(403).send({
+        message: "You must be an organisation to perform this action.",
+      });
+    }
     try {
       const animal = await new Animal({
         ...req.body,
         animalURL: req.body.petName + req.body.user,
+        user: req.user,
       }).save();
       res.send(animal);
     } catch (error) {
