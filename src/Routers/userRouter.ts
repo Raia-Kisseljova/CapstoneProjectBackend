@@ -1,10 +1,48 @@
 import express from "express";
 import auth from "../middleware/auth";
 import basicUser from "../models/basicUser";
+import BasicUser from "../models/basicUser";
 import Organisation from "../models/organisation";
+import Animal from "../schemas/animalSchema";
 import User from "../schemas/userSchema";
+import { IUser } from "../types";
 
 const userRouter = express.Router();
+
+userRouter.post("/:nickname/favourites", auth, async (req, res) => {
+  if (req.user.nickname !== req.params.nickname) {
+    return res
+      .status(403)
+      .send({ message: "You are not allowed to perform this action." });
+  }
+
+  try {
+    const user = await BasicUser.findOne({ nickname: req.params.nickname });
+    const animal = await Animal.findOne({ _id: req.body._id });
+    console.log("id" + req.body._id);
+    if (user !== null && animal !== null) {
+      user.favourites.push(animal._id);
+      await user.save();
+      res.status(200).send(user);
+    }
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
+userRouter.get("/:nickname/favourites", async (req, res) => {
+  const user = await BasicUser.findOne({ nickname: req.params.nickname });
+
+  if (user === null) {
+    return res.status(404).send();
+  }
+
+  const userFavourites = await Animal.find({
+    _id: { $in: user.favourites },
+  });
+
+  res.send(userFavourites);
+});
 
 //Find user by nickname
 
