@@ -18,7 +18,6 @@ import {
   signupRouter,
 } from "./routers/signupRouter";
 import userRouter from "./routers/userRouter";
-import { uploadRouter } from "./tools/upload";
 dotenv.config();
 
 const app = express();
@@ -34,7 +33,8 @@ app.use("/signup/user", signupRouter);
 app.use("/login", loginRouter);
 app.use("/user", userRouter);
 app.use("/animal", animalRouter);
-app.use("/upload", uploadRouter);
+import "./tools/upload";
+
 app.use(badRequest);
 app.use(unauthorized);
 app.use(forbidden);

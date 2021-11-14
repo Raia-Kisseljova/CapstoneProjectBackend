@@ -4,6 +4,10 @@ import dotenv from "dotenv";
 import express from "express";
 import multer from "multer";
 import path from "path";
+import auth from "../middleware/auth";
+import animalRouter from "../routers/animalRouter";
+import Animal from "../schemas/animalSchema";
+import { isOrganisation } from "./isOrganisation";
 
 dotenv.config();
 
@@ -34,12 +38,26 @@ export const upload = multer({
   // },
 });
 
-export const uploadRouter = express.Router();
-
-uploadRouter.post(
-  "/",
+animalRouter.post(
+  "/:_id/upload",
+  auth,
   upload.array("animalPics", 12),
   async (req, res, next) => {
+    const check = isOrganisation(req.user);
+    if (check === false) {
+      return res.status(403).send({
+        message: "You must be an organisation to perform this action.",
+      });
+    }
+
+    const { _id } = req.params;
+    const animal = await Animal.findOne({ _id, user: req.user });
+
+    console.log("HERE");
+    if (animal === null) {
+      return res.status(404).send();
+    }
+
     if (req.files === undefined) {
       res.status(400).send({ message: "No files were uploaded" });
       return;
@@ -73,6 +91,8 @@ uploadRouter.post(
 
       try {
         await cloudinary.uploader.upload(p.content as string);
+        animal.images.push(p.fileName as string);
+        await animal.save();
       } catch (err) {
         return next(err);
       }
