@@ -28,7 +28,7 @@ export interface IAnimal extends Document {
   breed: string;
   type: string;
   gender: string;
-  image: string;
+  images: string[];
   location: string;
   description: string;
   canLiveWithPets: boolean;

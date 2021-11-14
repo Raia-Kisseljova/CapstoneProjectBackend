@@ -14,10 +14,12 @@ const animalSchema = new mongoose.Schema(
     dateOfBirth: { type: Date, required: true },
     gender: { type: String, required: true },
     description: { type: String, required: true },
-    image: {
-      type: String,
-      default: "https://ui-avatars.com/",
-    },
+    images: [
+      {
+        type: String,
+        default: "https://ui-avatars.com/",
+      },
+    ],
     canLiveWithPets: {
       type: Boolean,
       required: true,
