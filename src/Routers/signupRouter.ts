@@ -32,7 +32,7 @@ loginRouter.post("/", async (req, res, next) => {
     { _id: user._id, nickname, role: user.role },
     process.env.JWT_SECRET as string,
     {
-      expiresIn: "1h",
+      expiresIn: "10h",
     }
   );
 
@@ -46,6 +46,7 @@ signupRouter.post("/", async (req, res, next) => {
     nickname,
     password,
     fullname,
+    location,
     hobby,
     dateOfBirth,
     about,
@@ -62,6 +63,7 @@ signupRouter.post("/", async (req, res, next) => {
       fullname,
       hobby,
       dateOfBirth,
+      location,
       about,
       occupation,
       favourites,
