@@ -10,14 +10,14 @@ import {
   serverError,
   unauthorized,
 } from "./errorHandlers";
-import animalRouter from "./routers/animalRouter";
-import organisationRouter from "./routers/organisationRouter";
+import animalRouter from "./Routers/animalRouter";
+import organisationRouter from "./Routers/organisationRouter";
 import {
   loginRouter,
   organisationSignupRouter,
   signupRouter,
-} from "./routers/signupRouter";
-import userRouter from "./routers/userRouter";
+} from "./Routers/signupRouter";
+import userRouter from "./Routers/userRouter";
 dotenv.config();
 
 const app = express();
@@ -33,7 +33,7 @@ app.use("/signup/user", signupRouter);
 app.use("/login", loginRouter);
 app.use("/user", userRouter);
 app.use("/animal", animalRouter);
-import "./tools/upload";
+import "./Tools/upload";
 
 app.use(badRequest);
 app.use(unauthorized);

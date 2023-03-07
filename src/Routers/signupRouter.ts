@@ -3,8 +3,8 @@ import express from "express";
 import jwt from "jsonwebtoken";
 import basicUser from "../models/basicUser";
 import Organisation from "../models/organisation";
-import User from "../schemas/userSchema";
-import { sendEmailOrg, sendEmailUser } from "../tools/emails";
+import User from "../Schemas/userSchema";
+import { sendEmailOrg, sendEmailUser } from "../Tools/emails";
 
 const SALT = 10;
 

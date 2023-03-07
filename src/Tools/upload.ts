@@ -5,8 +5,8 @@ import express from "express";
 import multer from "multer";
 import path from "path";
 import auth from "../middleware/auth";
-import animalRouter from "../routers/animalRouter";
-import Animal from "../schemas/animalSchema";
+import animalRouter from "../Routers/animalRouter";
+import Animal from "../Schemas/animalSchema";
 import { isOrganisation } from "./isOrganisation";
 
 dotenv.config();

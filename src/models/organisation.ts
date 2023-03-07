@@ -1,5 +1,5 @@
 import mongoose, { Schema } from "mongoose";
-import userSchema from "../schemas/userSchema";
+import userSchema from "../Schemas/userSchema";
 import { IOrganisation } from "../types";
 
 const Organisation = userSchema.discriminator(

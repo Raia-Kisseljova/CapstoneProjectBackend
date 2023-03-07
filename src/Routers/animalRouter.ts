@@ -1,8 +1,8 @@
 import express from "express";
 import auth from "../middleware/auth";
-import Animal from "../schemas/animalSchema";
-import { checkAnimalSchema, checkValidationResult } from "../tools/validation";
-import { isOrganisation } from "../tools/isOrganisation";
+import Animal from "../Schemas/animalSchema";
+import { checkAnimalSchema, checkValidationResult } from "../Tools/validation";
+import { isOrganisation } from "../Tools/isOrganisation";
 import { v2 as cloudinary } from "cloudinary";
 import DatauriParser from "datauri/parser";
 import dotenv from "dotenv";

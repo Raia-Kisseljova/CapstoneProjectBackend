@@ -2,8 +2,8 @@ import express from "express";
 import auth from "../middleware/auth";
 import BasicUser from "../models/basicUser";
 import Organisation from "../models/organisation";
-import Animal from "../schemas/animalSchema";
-import User from "../schemas/userSchema";
+import Animal from "../Schemas/animalSchema";
+import User from "../Schemas/userSchema";
 import { IUser } from "../types";
 
 const userRouter = express.Router();

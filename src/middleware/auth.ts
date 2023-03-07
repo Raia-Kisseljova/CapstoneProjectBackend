@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
-import User from "../schemas/userSchema";
+import User from "../Schemas/userSchema";
 
 const auth = (req: Request, res: Response, next: NextFunction) => {
   const authHeader = req.headers.authorization;
